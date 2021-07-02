@@ -12,7 +12,7 @@ WiFiClient client;
 unsigned long myChannelNumber = 1012728; 
 const char * myWriteAPIKey = "SOSBGI5TYN22Q8MV";
 
-void setup() { 
+void setup(){ 
 
   Serial.begin(9600);  
  
@@ -22,7 +22,6 @@ void setup() {
   ThingSpeak.begin(client);
 
 }
-
 
 int count=0;
   
