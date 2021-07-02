@@ -12,35 +12,31 @@ WiFiClient client;
 unsigned long myChannelNumber = 1012728; 
 const char * myWriteAPIKey = "SOSBGI5TYN22Q8MV";
 
-void setup() 
+void setup() { 
 
-{ 
-
-Serial.begin(9600);  
+  Serial.begin(9600);  
  
-pinMode(pResistor,INPUT);
+  pinMode(pResistor,INPUT);
 
-WiFi.begin(ssid, password);
-ThingSpeak.begin(client);
+  WiFi.begin(ssid, password);
+  ThingSpeak.begin(client);
 
 }
 
 
 int count=0;
   
-void loop() 
-
-  {
+void loop(){
  
   int value = analogRead(pResistor);
-  if((value<20)|(value>50))
+
+  if((value<20)|(value>50)){
   
-  {
+  count+=1;
+
+  Serial.println(count);
   
-    count+=1;
-    Serial.println(count);
-  
-  }
+}
   
   Serial.println(value);
   

@@ -16,31 +16,31 @@ WiFiClient client;
 unsigned long myChannelNumber = 1012728; 
 const char * myWriteAPIKey = "SOSBGI5TYN22Q8MV";
 
-void setup()
-
-{
+void setup(){
   
-Serial.begin(9600);
+  Serial.begin(9600);
 
-pinMode(trigPin,OUTPUT);
-pinMode(echoPin,INPUT); 
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT); 
 
-WiFi.begin(ssid, password);
-ThingSpeak.begin(client);
-dht.begin();
+  WiFi.begin(ssid, password);
+  ThingSpeak.begin(client);
+  dht.begin();
 
 }
   
-void loop()
-
-{
+void loop(){
   
   long duration;
   
   digitalWrite(trigPin,LOW);
+
   delayMicroseconds(2);
+
   digitalWrite(trigPin,HIGH);
+
   delayMicroseconds(10);
+
   digitalWrite(trigPin,LOW);
   
   duration=pulseIn(echoPin,HIGH);
@@ -53,14 +53,13 @@ void loop()
   float humidity=dht.readHumidity();
   float temperature=dht.readTemperature();
   
-  if(isnan(humidity)||isnan(temperature))
+  if(isnan(humidity)||isnan(temperature)){
   
-  {
+  Serial.println("Error reading");
+ 
+  return;
   
-    Serial.println("Error reading");
-    return;
-  
-  }
+}
   
   float heatIndex=dht.computeHeatIndex(temperature,humidity,false);
   
